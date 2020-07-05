@@ -20,15 +20,15 @@ public class PrimitiveDataTypes {
 	private JTable table;
 	private int rowCtr = 0;
 	private String[][] data = {
-			{"byte", 	"8 bits", 	"<html><span>-2<sup>7</span></html>",	"<html><span>2<sup>7</sup> - 1</span></html>", 	"123, 127, -128, -21"				},
-			{"short", 	"16 bits", 	"<html><span>-2<sup>15</span></html>", 	"<html><span>2<sup>7</sup> - 1</span></html>", 	"123, 456, -789, -254"				},
-			{"int",		"32 bits", 	"<html><span>-2<sup>31</span></html>", 	"<html><span>2<sup>7</sup> - 1</span></html>", 	"0b101010, 0167, 123456, 0xA2F4"	},
-			{"long",	"64 bits", 	"<html><span>-2<sup>63</span></html>", 	"<html><span>2<sup>7</sup> - 1</span></html>", 	"123, 456789, -987654, -654872"		},
-			{"float",	"32 bits", 	"single-precision",						"32-bit IEEE 754", 								"123, 456e1, 123.2f, 456.2e12f"		},
-			{"double",	"64 bits", 	"double-precision",						"64-bit IEEE 754",								"123, 123.2, 456d, 456.2d"			},
-			{"boolean",	"1 bit(?)",	"true", 								"false", 										"true, false"						},
-			{"char",	"16 bits", 	"Unicode 0000",							"Unicode ffff", 								"\'a\', \'\\u1EF2\', \'\\t\', \'C\'"},
-			{"String",	"-------",	"-------", 								"-------",										"\"Sample string\", \"\\n \\t \\\\\""}};
+			{"byte", 	"8 bits", 			"<html><span>-2<sup>7</span></html>",	"<html><span>2<sup>7</sup> - 1</span></html>", 	"123, 127, -128, -21"				},
+			{"short", 	"16 bits", 			"<html><span>-2<sup>15</span></html>", 	"<html><span>2<sup>15</sup> - 1</span></html>", "123, 456, -789, -254"				},
+			{"int",		"32 bits", 			"<html><span>-2<sup>31</span></html>", 	"<html><span>2<sup>31</sup> - 1</span></html>", "0b101010, 0167, 123456, 0xA2F4"	},
+			{"long",	"64 bits", 			"<html><span>-2<sup>63</span></html>", 	"<html><span>2<sup>63</sup> - 1</span></html>", "123, 456789L, -987654, -654872L"	},
+			{"float",	"32 bits IEEE 754", "approx. -1.40e-45",					"approx. 3.40e+38", 							"123, 456e1, 123.2f, 456.2e12f"		},
+			{"double",	"64 bits IEEE 754", "approx. -4.94e-324",					"approx. 1.79e+308",							"123, 123.2, 456d, 456.2d"			},
+			{"boolean",	"1 bit(?)",			"true", 								"false", 										"true, false"						},
+			{"char",	"16 bits", 			"Unicode 0000",							"Unicode ffff", 								"\'a\', \'\\u1EF2\', \'\\t\', \'C\'"},
+			{"String",	"-------",			"-------", 								"-------",										"\"Sample string\", \"\\n \\t \\\\\""}};
 					
 	private JTable showTable() {
 		table = new JTable(new DefaultTableModel(
@@ -69,7 +69,20 @@ public class PrimitiveDataTypes {
 	private boolean displayNextRow() {
 		DefaultTableModel model = (DefaultTableModel)table.getModel();
 		
-		if(rowCtr >= data.length - 1) {
+		switch(rowCtr) {
+		case 0:	//Integers
+			JOptionPane.showMessageDialog(frame, "Let's start with Integral Values.", "Primitive Data Type : Integers", JOptionPane.INFORMATION_MESSAGE);
+			break;
+		case 4:	//Floats
+			JOptionPane.showMessageDialog(frame, "Let's now proceed to floating values.", "Primitive Data Type : Floating Numbers", JOptionPane.INFORMATION_MESSAGE);
+			break;
+		case 6:	//Boolean
+			JOptionPane.showMessageDialog(frame, "It's either true or false.", "Primitive Data Type : Boolean", JOptionPane.INFORMATION_MESSAGE);
+			break;
+		case 7:	//Char
+			JOptionPane.showMessageDialog(frame, "Char!", "Primitive Data Type : Character", JOptionPane.INFORMATION_MESSAGE);
+			break;
+		case 8:	//String and End
 			JOptionPane.showMessageDialog(frame, "That's all folks.", "Displayed All", JOptionPane.INFORMATION_MESSAGE);
 			int ans = JOptionPane.showConfirmDialog(frame, "But wait, there's more.\nWanna see?", "Bonus Data Type", JOptionPane.OK_CANCEL_OPTION);
 			if(ans == JOptionPane.OK_OPTION)
@@ -113,7 +126,7 @@ public class PrimitiveDataTypes {
 		next.setContentAreaFilled(false);
 		next.setOpaque(false);
 		next.setBounds((FRAME_WIDTH - BUTTON_WIDTH) / 2,	//center x
-						TABLE_HEIGHT + 2 * PADDING, 			//y
+						TABLE_HEIGHT + 2 * PADDING, 		//y
 						BUTTON_WIDTH,
 						BUTTON_HEIGHT);
 		
